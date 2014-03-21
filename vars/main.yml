@@ -1,16 +1,16 @@
 ---
 sixpack:
-	# Change this!
-	key: 'qJcCEBeeE4lKXFNOpNTaMepSvUyE1PQjLq7Lc98Q1svK0q3mcDJg2Vk1Qwz7lKI'
-	server:
-		host: sixpack.example.com
-		cors_origin: '(https?://[^/]*\.?example\.com(:[0-9]+)?)'
-		ssl:
-			enabled: false
-			certificate: /etc/nginx/ssl/ab.example.com.chained.crt
-			certificate_key: /etc/nginx/ssl/ab.example.com.key
-	web:
-		host: ab.example.com
+  # Change this!
+  key: 'qJcCEBeeE4lKXFNOpNTaMepSvUyE1PQjLq7Lc98Q1svK0q3mcDJg2Vk1Qwz7lKI'
+  server:
+    host: sixpack.example.com
+    cors_origin: '(https?://[^/]*\.?example\.com(:[0-9]+)?)'
+    ssl:
+      enabled: false
+      certificate: /etc/nginx/ssl/ab.example.com.chained.crt
+      certificate_key: /etc/nginx/ssl/ab.example.com.key
+  web:
+    host: ab.example.com
 redis:
-	host: localhost
-	port: 6379
+  host: localhost
+  port: 6379
