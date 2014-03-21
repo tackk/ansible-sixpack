@@ -9,25 +9,22 @@ The role handles installing the following (In order of installation):
 - Redis
 - Sixpack
 
-## Details
+Any of these can be removed by commenting out, or removing the line from `tasks/main.yml`.
 
-The Role sets up 2 Nginx Sites: One for the Sixpack Server, and one for the web
-interface.
-
-### Configuration
+## Configuration
 
 All configuration of the Role is done in `vars/main.yml`.
 
-### Sixpack Server
+## Sixpack Server
 
 The server is deployed behind an Nginx Proxy (optionally using SSL).  It also
 handles all of the CORS headers automatically for you.
 
-### Sixpack Web Interface
+## Sixpack Web Interface
 
 The web interface is deployed behind an Nginx Proxy.
 
-#### Authentication
+### Authentication
 
 HTTP Authentication is enabled for the web interface as a quick means of
 protecting the interface.
