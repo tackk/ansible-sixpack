@@ -13,7 +13,8 @@ Any of these can be removed by commenting out, or removing the line from `tasks/
 
 ## Configuration
 
-All configuration of the Role is done in `vars/main.yml`.
+- **Ansible Role Variables:** `vars/main.yml`.
+- **Sixpack Config:** `templates/config.yml`
 
 ## Sixpack Server
 
