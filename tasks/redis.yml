@@ -1,0 +1,14 @@
+---
+- name: Redis
+  apt: pkg=redis-server state=installed
+
+- name: Adding vm.overcommit_memory = 1
+  lineinfile: dest=/etc/sysctl.conf  line="vm.overcommit_memory = 1"
+
+- name: Setting vm.overcommit_memory = 1 without restart
+  command: sysctl vm.overcommit_memory=1
+
+- name: Copying Config
+  copy: src=redis.conf dest=/etc/redis/redis.conf
+  notify:
+    - restart redis

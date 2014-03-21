@@ -1,0 +1,45 @@
+---
+- name: Install Required Packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - libevent-dev
+    - python-dev
+    - supervisor
+
+- name: Install Gunicorn and Supporting Python Packages
+  easy_install: name={{ item }}
+  with_items:
+    - greenlet
+    - gevent
+    - gunicorn
+
+- name: Install Sixpack
+  pip: name=sixpack
+
+- name: Ensure sixpack Directory Exists
+  file: path=/etc/sixpack mode=0755 state=directory
+
+- name: Copying Config
+  copy: src=config.yml dest=/etc/sixpack/config.yml
+
+- name: Copying Supervisor Config
+  copy: src=supervisor/sixpack.conf dest=/etc/supervisor/conf.d/sixpack.conf owner=root group=root mode=0755
+  notify: restart sixpack
+
+- name: Copy sixpack .htpasswd
+  copy: src=.htpasswd dest=/etc/sixpack/.htpasswd
+  notify: restart nginx
+
+- name: Copy Nginx sites
+  template: src=nginx/{{ item }}.conf dest=/etc/nginx/sites-available/{{ item }}.conf
+  with_items:
+    - sixpack.server
+    - sixpack.web
+  notify: restart nginx
+
+- name: Enable Nginx sites
+  file: src=/etc/nginx/sites-available/{{ item }}.conf dest=/etc/nginx/sites-enabled/{{ item }}.conf state=link
+  with_items:
+    - sixpack.server
+    - sixpack.web
+  notify: restart nginx
