@@ -20,7 +20,7 @@
   file: path=/etc/sixpack mode=0755 state=directory
 
 - name: Copying Config
-  copy: src=config.yml dest=/etc/sixpack/config.yml
+  template: src=config.yml dest=/etc/sixpack/config.yml
 
 - name: Copying Supervisor Config
   copy: src=supervisor/sixpack.conf dest=/etc/supervisor/conf.d/sixpack.conf owner=root group=root mode=0755
